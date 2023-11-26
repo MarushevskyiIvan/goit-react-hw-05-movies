@@ -13,16 +13,40 @@ const options = {
 };
 
 export const FetchAPI = async () => {
-  const response = await axios.get(`${BASE_URL}3/trending/all/day`, options);
+  const response = await axios.get(`${BASE_URL}3/trending/movie/day`, options);
 
   return response.data;
 };
 
 export const FetchMovieId = async id => {
+  const response = await axios.get(`${BASE_URL}3/movie/${id}?`, options);
+
+  return response.data;
+};
+
+export const FetchCast = async id => {
   const response = await axios.get(
-    `${BASE_URL}3/movie/${id}?language=en-US`,
+    ` ${BASE_URL}3/movie/${id}/credits?`,
     options
   );
 
   return response.data;
+};
+
+export const FetchReviews = async id => {
+  const response = await axios.get(
+    ` ${BASE_URL}3/movie/${id}/reviews?&page=1`,
+    options
+  );
+
+  return response.data.results;
+};
+
+export const FetchSearch = async query => {
+  const response = await axios.get(
+    ` ${BASE_URL}3/search/movie?query=${query}&include_adult=false&page=1`,
+    options
+  );
+
+  return response.data.results;
 };

@@ -1,26 +1,24 @@
 import Home from 'pages/Home';
 import MovieDetails from 'pages/MovieDetails';
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { AppLayout } from './appLayout/AppLayout';
+import Cast from './cast/Cast';
+import Reviews from './reviews/Reviews';
+import { SearchBar } from './searchBar/SearchBar';
 
 export const App = () => {
   return (
     <>
-      <header>
-        <ul>
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/movies">Movies</NavLink>
-          </li>
-        </ul>
-      </header>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<div>Movies</div>} />
-        <Route path="/movies/:movieId" element={<MovieDetails />} />
-        <Route path="/movies/:movieId/cast" element={<div>Cast</div>} />
-        <Route path="/movies/:movieId/reviews" element={<div>Reviews</div>} />
+        <Route path="/" element={<AppLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/movies" element={<SearchBar />} />
+
+          <Route path="/movies/:movieId" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+        </Route>
       </Routes>
     </>
   );

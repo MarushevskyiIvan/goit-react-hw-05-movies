@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { FetchAPI } from 'components/fetch/FetchAPI';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     async function fetchAPIMovies() {
@@ -25,7 +26,9 @@ const Home = () => {
         {movies.map(({ title, id }) => {
           return (
             <li key={id}>
-              <Link to={`/movies/${id}`}>{title}</Link>
+              <Link to={`/movies/${id}`} state={{ from: location }}>
+                {title}
+              </Link>
             </li>
           );
         })}
