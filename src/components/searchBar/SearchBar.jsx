@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
   SearchForm,
@@ -17,9 +17,9 @@ export const SearchBar = () => {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const location = useLocation();
-  const [params, setParams] = useSearchParams();
+  // const [params, setParams] = useSearchParams();
 
-  console.log(params);
+  // console.log(params);
 
   const handleChange = evt => {
     const { value } = evt.currentTarget;
