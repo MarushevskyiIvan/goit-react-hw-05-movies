@@ -7,37 +7,38 @@ import {
   Searchbar,
 } from './Search.styled';
 import { FetchSearch } from 'components/fetch/FetchAPI';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 
 const defaultImg =
   'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
 export const SearchBar = () => {
   const [name, setName] = useState('');
-  const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
+
   const location = useLocation();
-  // const [params, setParams] = useSearchParams();
 
-  // console.log(params);
+  const [params, setParams] = useSearchParams();
 
-  const handleChange = evt => {
-    const { value } = evt.currentTarget;
+  const query = params.get('query') ?? '';
 
-    setName(value);
+  const handleChange = newQuery => {
+    setName(newQuery);
   };
 
   const formSubmit = evt => {
     evt.preventDefault();
-    setQuery(name);
+
+    params.set('query', name);
+    setParams(params);
   };
 
   useEffect(() => {
     async function fetchCast() {
       try {
-        const result = await FetchSearch(query);
+        const { results } = await FetchSearch(query);
 
-        setMovies(result);
+        setMovies(results);
       } catch (error) {}
     }
     fetchCast();
@@ -55,7 +56,7 @@ export const SearchBar = () => {
             type="text"
             placeholder="Search images and photos"
             name="name"
-            onChange={handleChange}
+            onChange={evt => handleChange(evt.target.value)}
           />
         </SearchForm>
       </Searchbar>

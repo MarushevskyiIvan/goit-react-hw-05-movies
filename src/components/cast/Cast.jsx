@@ -1,27 +1,32 @@
 import { FetchCast } from 'components/fetch/FetchAPI';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
+import toast, { Toaster } from 'react-hot-toast';
+
 const defaultImg =
-  'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
+  'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=342x342';
 
 const Cast = () => {
-  const params = useParams();
-  const [casts, setCasts] = useState([]);
+  const { movieId } = useParams();
+  const [casts, setCasts] = useState(null);
 
   useEffect(() => {
     async function fetchCast() {
       try {
-        const cast = await FetchCast(params.movieId);
-        setCasts(cast.cast);
-      } catch (error) {}
+        const { cast } = await FetchCast(movieId);
+        setCasts(cast);
+      } catch (error) {
+        toast.error('sorry movies not found');
+      }
     }
     fetchCast();
-  }, [params.movieId]);
+  }, [movieId]);
 
   return (
-    <ul>
-      {casts &&
-        casts.map(({ profile_path, original_name, id, character }) => {
+    casts && (
+      <ul>
+        {casts.map(({ profile_path, original_name, id, character }) => {
           return (
             <li key={id}>
               <img
@@ -37,7 +42,9 @@ const Cast = () => {
             </li>
           );
         })}
-    </ul>
+        <Toaster />
+      </ul>
+    )
   );
 };
 

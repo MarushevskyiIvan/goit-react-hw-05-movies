@@ -1,5 +1,5 @@
-import Home from 'pages/Home';
-import MovieDetails from 'pages/MovieDetails';
+import HomePage from 'pages/HomePage';
+import MovieDetails from 'pages/MovieDetailsPage';
 import { Routes, Route } from 'react-router-dom';
 import { AppLayout } from './appLayout/AppLayout';
 import Cast from './cast/Cast';
@@ -11,7 +11,7 @@ export const App = () => {
     <>
       <Routes>
         <Route path="/" element={<AppLayout />}>
-          <Route index element={<Home />} />
+          <Route index element={<HomePage />} />
           <Route path="/movies" element={<SearchBar />} />
 
           <Route path="/movies/:movieId" element={<MovieDetails />}>
