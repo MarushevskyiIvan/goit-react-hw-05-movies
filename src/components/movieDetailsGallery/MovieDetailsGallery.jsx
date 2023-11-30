@@ -2,13 +2,14 @@ import { useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const defaultImg =
-  '<https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700>';
+  'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=342x342';
 
 export const MovieDetailsGallery = ({ movie }) => {
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
   const { id, overview, poster_path, title, vote_average, genres } = movie;
+
   return (
     <div key={id}>
       <Link to={backLinkLocationRef.current}>Go back</Link>
