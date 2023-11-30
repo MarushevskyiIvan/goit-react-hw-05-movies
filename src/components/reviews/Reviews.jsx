@@ -1,36 +1,41 @@
-const { FetchReviews } = require('components/fetch/FetchAPI');
-const { useState, useEffect } = require('react');
-const { useParams } = require('react-router-dom');
+import { FetchReviews } from 'components/fetch/FetchAPI';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Reviews = () => {
   const { movieId } = useParams();
-  const [reviews, setReviews] = useState(null);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     async function fetchReviews() {
       try {
         const { results } = await FetchReviews(movieId);
         setReviews(results);
-        console.log(results);
-      } catch (error) {}
+      } catch (error) {
+        toast.error('sorry movies not found');
+      }
     }
     fetchReviews();
   }, [movieId]);
 
   return (
     <>
-      {reviews && (
+      {reviews.length > 0 ? (
         <ul>
           {reviews.map(({ author, id, content }) => {
             return (
-              <div key={id}>
+              <li key={id}>
                 <h3>Author {author}</h3>
                 <p>{content}</p>
-              </div>
+              </li>
             );
           })}
         </ul>
+      ) : (
+        <p>We don`t have any reviews for this movies </p>
       )}
+      <Toaster />
     </>
   );
 };
