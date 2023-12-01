@@ -1,4 +1,4 @@
-import { FetchReviews } from 'components/fetch/FetchAPI';
+import { FetchReviews } from 'fetch/FetchAPI';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';

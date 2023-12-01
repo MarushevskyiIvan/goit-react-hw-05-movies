@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
-import { FetchSearch } from 'components/fetch/FetchAPI';
+import { FetchSearch } from 'fetch/FetchAPI.jsx';
 import { useSearchParams } from 'react-router-dom';
 
 import toast, { Toaster } from 'react-hot-toast';
 
 import { SearchBar } from 'components/searchBar/SearchBar';
 import { Loader } from '../components/loader/Loader.jsx';
+import { MoviesList } from 'components/moviesList/MoviesList.jsx';
 
 const MoviesPage = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const [params] = useSearchParams();
@@ -35,8 +36,10 @@ const MoviesPage = () => {
 
   return (
     <>
-      <SearchBar movies={movies} />
       {isLoading && <Loader />}
+      <SearchBar />
+      <MoviesList movies={movies} />
+
       <Toaster />
     </>
   );

@@ -1,4 +1,4 @@
-import { FetchCast } from 'components/fetch/FetchAPI';
+import { FetchCast } from 'fetch/FetchAPI';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 

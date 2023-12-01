@@ -9,13 +9,12 @@ import {
 
 import { useSearchParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import { SearchGallery } from 'components/searchGallery/SearchGallery';
 
-export const SearchBar = ({ movies }) => {
+export const SearchBar = () => {
   const [name, setName] = useState('');
 
   const [params, setParams] = useSearchParams();
-  const query = params.get('query') ?? '';
+  // const query = params.get('query') ?? '';
 
   const handleChange = newQuery => {
     setName(newQuery);
@@ -41,13 +40,12 @@ export const SearchBar = ({ movies }) => {
 
           <SearchFormInput
             type="text"
-            placeholder="Search images and photos"
+            placeholder="Search movies"
             name="name"
             onChange={evt => handleChange(evt.target.value)}
           />
         </SearchForm>
       </Searchbar>
-      {query && <SearchGallery movies={movies} />}
 
       <Toaster />
     </>
