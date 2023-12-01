@@ -12,8 +12,13 @@ const MoviesPage = () => {
   const [movies, setMovies] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const [params] = useSearchParams();
+  const [params, setParams] = useSearchParams();
   const query = params.get('query') ?? '';
+
+  const handleParams = evt => {
+    params.set('query', evt);
+    setParams(params);
+  };
 
   useEffect(() => {
     async function fetchCast() {
@@ -37,7 +42,7 @@ const MoviesPage = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <SearchBar />
+      <SearchBar handleParams={handleParams} />
       <MoviesList movies={movies} />
 
       <Toaster />

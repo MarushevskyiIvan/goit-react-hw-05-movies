@@ -16,6 +16,7 @@ export const SearchForm = styled.form`
   border-radius: 3px;
   overflow: hidden;
   border: solid #3f51b5 1px;
+  margin-bottom: 40px;
 `;
 export const SearchFormButton = styled.button`
   display: flex;

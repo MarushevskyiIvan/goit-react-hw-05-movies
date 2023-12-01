@@ -7,14 +7,10 @@ import {
   Searchbar,
 } from './Search.styled';
 
-import { useSearchParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 
-export const SearchBar = () => {
+export const SearchBar = ({ handleParams }) => {
   const [name, setName] = useState('');
-
-  const [params, setParams] = useSearchParams();
-  // const query = params.get('query') ?? '';
 
   const handleChange = newQuery => {
     setName(newQuery);
@@ -22,12 +18,12 @@ export const SearchBar = () => {
 
   const formSubmit = evt => {
     evt.preventDefault();
-    if (name.trim() === '') {
-      return toast.error('Please enter the text of the query');
+    if (!name) {
+      toast.error('Please enter the text of the query');
+      return;
     }
 
-    params.set('query', name);
-    setParams(params);
+    handleParams(name);
   };
 
   return (
