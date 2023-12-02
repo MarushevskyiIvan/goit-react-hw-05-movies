@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink, Outlet, useParams } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { FetchMovieId } from '../fetch/FetchAPI.jsx';
 import { Loader } from '../components/loader/Loader.jsx';
 import { MovieDetailsGallery } from 'components/movieDetailsGallery/MovieDetailsGallery.jsx';
@@ -41,7 +41,6 @@ const MovieDetailsPage = () => {
         </li>
       </ul>
       <Outlet />
-      <Toaster />
     </div>
   );
 };

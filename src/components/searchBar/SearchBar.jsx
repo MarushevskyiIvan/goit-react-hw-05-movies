@@ -7,18 +7,18 @@ import {
   Searchbar,
 } from './Search.styled';
 
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 export const SearchBar = ({ handleParams }) => {
   const [name, setName] = useState('');
-
+  console.log(name);
   const handleChange = newQuery => {
     setName(newQuery);
   };
 
   const formSubmit = evt => {
     evt.preventDefault();
-    if (!name) {
+    if (!name.trim()) {
       toast.error('Please enter the text of the query');
       return;
     }
@@ -42,8 +42,6 @@ export const SearchBar = ({ handleParams }) => {
           />
         </SearchForm>
       </Searchbar>
-
-      <Toaster />
     </>
   );
 };

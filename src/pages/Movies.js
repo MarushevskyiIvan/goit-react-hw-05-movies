@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { FetchSearch } from 'fetch/FetchAPI.jsx';
 import { useSearchParams } from 'react-router-dom';
 
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 import { SearchBar } from 'components/searchBar/SearchBar';
 import { Loader } from '../components/loader/Loader.jsx';
@@ -44,8 +44,6 @@ const MoviesPage = () => {
       {isLoading && <Loader />}
       <SearchBar handleParams={handleParams} />
       <MoviesList movies={movies} />
-
-      <Toaster />
     </>
   );
 };

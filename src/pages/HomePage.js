@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { FetchHomeAPI } from 'fetch/FetchAPI.jsx';
 import { Loader } from '../components/loader/Loader.jsx';
 import { MoviesList } from 'components/moviesList/MoviesList.jsx';
@@ -30,7 +30,6 @@ const HomePage = () => {
       <h1>Trending today</h1>
       {isLoading && <Loader />}
       {movies && <MoviesList movies={movies} />}
-      <Toaster />
     </>
   );
 };

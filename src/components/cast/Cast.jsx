@@ -2,7 +2,7 @@ import { FetchCast } from 'fetch/FetchAPI';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const defaultImg =
   'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=342x342';
@@ -42,7 +42,6 @@ const Cast = () => {
             </li>
           );
         })}
-        <Toaster />
       </ul>
     )
   );

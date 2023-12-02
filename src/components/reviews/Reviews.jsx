@@ -1,7 +1,7 @@
 import { FetchReviews } from 'fetch/FetchAPI';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -35,7 +35,6 @@ const Reviews = () => {
       ) : (
         <p>We don`t have any reviews for this movies </p>
       )}
-      <Toaster />
     </>
   );
 };
